@@ -346,3 +346,68 @@
     margin: 16px;
   }
 }
+
+.map {
+  height: 600px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vehicles-map {
+  margin-top: 20px;
+}
+
+.toggle-view-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.toggle-view-button:hover {
+  background-color: #1976D2;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Фикс для маркеров Leaflet */
+.leaflet-container {
+  font-family: inherit;
+}
+
+.leaflet-popup-content {
+  margin: 12px;
+  min-width: 200px;
+}
+
+.leaflet-popup-content h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.leaflet-popup-content p {
+  margin: 4px 0;
+  color: #666;
+}
+.leaflet-error {
+  display: 'flex'; 
+  align-items: 'center'; 
+  justify-content: 'center'; 
+  height: '100%'; 
+  color: '#666';
+  font-size: '16px';
+}
+

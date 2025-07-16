@@ -16,17 +16,16 @@ import {
 
 interface VehicleTableProps {
   vehiclesCount: number;
+  onVehicleHover?: (vehicle: Vehicle | null) => void;
 }
 
-const VehicleTable: React.FC<VehicleTableProps> = ({ vehiclesCount }) => {
+const VehicleTable: React.FC<VehicleTableProps> = ({ vehiclesCount, onVehicleHover }) => {
   const dispatch = useAppDispatch();
   
-  // Селекторы
   const sortedVehicles = useAppSelector(selectSortedVehicles);
   const sortField = useAppSelector(selectSortField);
   const sortDirection = useAppSelector(selectSortDirection);
 
-  // Обработчики
   const handleSort = (field: SortField) => {
     dispatch(setSorting({ field }));
   };
@@ -49,12 +48,8 @@ const VehicleTable: React.FC<VehicleTableProps> = ({ vehiclesCount }) => {
         <table className="table__content">
           <thead className="table__head">
             <tr>
-              <th className="table__head-cell">
-                Name
-              </th>
-              <th className="table__head-cell">
-                Model
-              </th>
+              <th className="table__head-cell">Name</th>
+              <th className="table__head-cell">Model</th>
               <th className="table__head-cell">
                 <button
                   onClick={() => handleSort('year')}
@@ -77,29 +72,26 @@ const VehicleTable: React.FC<VehicleTableProps> = ({ vehiclesCount }) => {
                   )}
                 </button>
               </th>
-              <th className="table__head-cell">
-                Color
-              </th>
-              <th className="table__head-cell table__cell--actions">
-                Actions
-              </th>
+              <th className="table__head-cell">Color</th>
+              <th className="table__head-cell table__cell--actions">Actions</th>
             </tr>
           </thead>
           <tbody className="table__body">
             {sortedVehicles.map((vehicle) => (
-              <tr key={vehicle.id} className="table__row">
+              <tr 
+                key={vehicle.id} 
+                className="table__row"
+                onMouseEnter={() => onVehicleHover?.(vehicle)}
+                onMouseLeave={() => onVehicleHover?.(null)}
+              >
                 <td className="table__cell">
                   <div className="vehicle__name">{vehicle.name}</div>
                 </td>
                 <td className="table__cell">
                   <div className="vehicle__model">{vehicle.model}</div>
                 </td>
-                <td className="table__cell">
-                  {vehicle.year}
-                </td>
-                <td className="table__cell">
-                  ${vehicle.price.toLocaleString()}
-                </td>
+                <td className="table__cell">{vehicle.year}</td>
+                <td className="table__cell">${vehicle.price.toLocaleString()}</td>
                 <td className="table__cell">
                   <div className="vehicle__color">
                     <div 
