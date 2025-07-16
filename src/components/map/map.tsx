@@ -17,7 +17,7 @@ function Map({ className, vehicles, activeVehicle }: MapProps): JSX.Element {
   const center = vehicles.length > 0 ? {
     lat: vehicles[0].latitude,
     lng: vehicles[0].longitude
-  } : null;
+  } : undefined;
   
   const map = useMap({ mapRef, center, zoom: 11 });
 
